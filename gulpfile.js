@@ -17,5 +17,8 @@ task('sass', () => src('./assets/govuk/sass/**/*.scss')
 task('js', () => src('./node_modules/govuk-frontend/govuk/all.js')
   .pipe(dest('./dist/govuk/')));
 
-task('build', series(['clean:build', 'sass', 'js']));
+task('govuk-assets', () => src('./node_modules/govuk-frontend/govuk/assets/**/*')
+  .pipe(dest('./dist/govuk/')));
+
+task('build', series(['clean:build', 'sass', 'js', 'govuk-assets']));
 task('default', series(['build']));
